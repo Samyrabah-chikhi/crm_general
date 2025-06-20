@@ -7,11 +7,16 @@ export async function PUT(
 ) {
   const userID = parseInt(params.id);
   const body = await req.json();
-
+  const { name, email, hashedPassword, role } = body;
   try {
-    const updatedUser = prisma.user.update({
+    const updatedUser = await prisma.user.update({
       where: { id: userID },
-      data: body,
+      data: {
+        name,
+        email,
+        hashedPassword,
+        role,
+      },
     });
     return NextResponse.json(updatedUser);
   } catch (error) {
@@ -20,8 +25,23 @@ export async function PUT(
 }
 
 export async function DELETE(
-  req: Request,
+  _req: Request,
   { params }: { params: { id: string } }
 ) {
-  return NextResponse.json({ message: "Request not created" });
+  const userID = parseInt(params.id);
+  try {
+    const deletedUser = await prisma.user.delete({
+      where: { id: userID },
+    });
+    return NextResponse.json(deletedUser);
+  } catch (error) {
+    return NextResponse.json(
+      {
+        error: "User not found",
+      },
+      {
+        status: 404,
+      }
+    );
+  }
 }
