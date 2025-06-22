@@ -1,7 +1,7 @@
 import HomeNavbar from "@/components/HomeNavbar";
 import InfoSection from "@/components/InfoSection";
 import KeyMetrics from "@/components/KeyMetrics";
-
+import { deleteSession } from "./backend/session";
 
 export default function Home() {
   return (

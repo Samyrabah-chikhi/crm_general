@@ -1,16 +1,16 @@
 "use client";
 import { useActionState } from "react";
-import { signup } from "./loginAction";
+import { signup } from "../backend/loginAction";
 import Link from "next/link";
 
 export default function page() {
-  const [state, action] = useActionState(signup, { errors: {} });
+  const [state, action, pending] = useActionState(signup, { errors: {} });
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-blue-200">
+    <div className="bg-gray-100 flex justify-center items-center min-h-screen">
       <form
         action={action}
-        className="text-center rounded-lg p-5 text-black flex flex-col items-center justify-center bg-gray-700 w-[30vw] h-[85vh] gap-2"
+        className="text-center rounded-lg p-5 flex flex-col items-center justify-center bg-blue-700 w-[35vw] h-[85vh] gap-2"
       >
         <input
           className="w-full px-3 py-2 rounded bg-gray-300 hover:scale-x-102 duration-700"
@@ -36,7 +36,7 @@ export default function page() {
         )}
         <input
           className="w-full px-3 py-2 rounded bg-gray-300 hover:scale-x-102 duration-700"
-          type="text"
+          type="password"
           name="password"
           placeholder="password"
         />
@@ -45,10 +45,21 @@ export default function page() {
             {state.errors.password}
           </p>
         )}
-        <button className="mt-4 w-24 h-12 rounded bg-red-700 cursor-pointer hover:scale-110 hover:text-white hover:bg-green-700 duration-500">Submit</button>
+        <button
+          disabled={pending}
+          className={`font-semibold mt-4 w-28 h-12 rounded bg-red-700 cursor-pointer hover:scale-115 hover:text-white hover:bg-green-700 hover:rounded-lg duration-500`}
+        >
+          {pending ? "Submitting...." : "Sign Up"}
+        </button>
         <div className="mt-10 flex gap-8 w-full text-white items-center justify-center">
           {" "}
-          <p>Already a member?</p> <Link href={"/signin"} className= "text-xl hover:text-green-600 duration-300 underline">Login</Link>
+          <p>Already a member?</p>{" "}
+          <Link
+            href={"/login"}
+            className="text-2xl hover:text-green-600 duration-300 underline"
+          >
+            Login
+          </Link>
         </div>
       </form>
     </div>
