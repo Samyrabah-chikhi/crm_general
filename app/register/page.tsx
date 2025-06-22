@@ -56,7 +56,7 @@ export default function page() {
           <p>Already a member?</p>{" "}
           <Link
             href={"/login"}
-            className="text-2xl hover:text-green-600 duration-300 underline"
+            className="text-2xl hover:text-green-500 duration-300 underline"
           >
             Login
           </Link>
