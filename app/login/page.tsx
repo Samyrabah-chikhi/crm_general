@@ -38,7 +38,7 @@ export default function page() {
           disabled={pending}
           className={`font-semibold mt-4 w-28 h-12 rounded bg-red-700 cursor-pointer hover:scale-115 hover:text-white hover:bg-green-700 hover:rounded-lg duration-500`}
         >
-          {pending ? "Submitting...." : "Sign Up"}
+          {pending ? "Submitting...." : "Sign In"}
         </button>
         <div className="mt-10 flex gap-8 w-full text-white items-center justify-center">
           {" "}

@@ -8,7 +8,7 @@ const secret = new TextEncoder().encode(
   process.env.JWT_SECRET || "your-default-secret"
 );
 
-const cookie = {
+export const cookie = {
   name: "session",
   options: {
     httpOnly: true,
@@ -23,7 +23,7 @@ export async function encrypt(payload: { userId: string; expiresAt: Date }) {
   return new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime("1day")
+    .setExpirationTime("7day")
     .sign(secret);
 }
 
