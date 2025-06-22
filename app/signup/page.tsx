@@ -1,0 +1,56 @@
+"use client";
+import { useActionState } from "react";
+import { signup } from "./loginAction";
+import Link from "next/link";
+
+export default function page() {
+  const [state, action] = useActionState(signup, { errors: {} });
+
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-blue-200">
+      <form
+        action={action}
+        className="text-center rounded-lg p-5 text-black flex flex-col items-center justify-center bg-gray-700 w-[30vw] h-[85vh] gap-2"
+      >
+        <input
+          className="w-full px-3 py-2 rounded bg-gray-300 hover:scale-x-102 duration-700"
+          type="text"
+          name="name"
+          placeholder="name"
+        />
+        {state?.errors?.name && (
+          <p className="text-red-600 font-semibold text-sm">
+            {state.errors.name}
+          </p>
+        )}
+        <input
+          className="w-full px-3 py-2 rounded bg-gray-300 hover:scale-x-102 duration-700"
+          type="text"
+          name="email"
+          placeholder="email"
+        />
+        {state?.errors?.email && (
+          <p className="text-red-600 font-semibold text-sm">
+            {state.errors.email}
+          </p>
+        )}
+        <input
+          className="w-full px-3 py-2 rounded bg-gray-300 hover:scale-x-102 duration-700"
+          type="text"
+          name="password"
+          placeholder="password"
+        />
+        {state?.errors?.password && (
+          <p className="text-red-600 font-semibold text-sm">
+            {state.errors.password}
+          </p>
+        )}
+        <button className="mt-4 w-24 h-12 rounded bg-red-700 cursor-pointer hover:scale-110 hover:text-white hover:bg-green-700 duration-500">Submit</button>
+        <div className="mt-10 flex gap-8 w-full text-white items-center justify-center">
+          {" "}
+          <p>Already a member?</p> <Link href={"/signin"} className= "text-xl hover:text-green-600 duration-300 underline">Login</Link>
+        </div>
+      </form>
+    </div>
+  );
+}
