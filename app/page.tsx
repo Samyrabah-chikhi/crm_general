@@ -1,7 +1,8 @@
+import ActivityTimeline from "@/components/ActivityTimeline";
+import CustomerManagment from "@/components/CustomerManagment";
 import HomeNavbar from "@/components/HomeNavbar";
 import InfoSection from "@/components/InfoSection";
 import KeyMetrics from "@/components/KeyMetrics";
-import { deleteSession } from "./backend/session";
 
 export default function Home() {
   return (
@@ -10,6 +11,8 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center gap-10">
         <InfoSection></InfoSection>
         <KeyMetrics></KeyMetrics>
+        <CustomerManagment></CustomerManagment>
+        <ActivityTimeline></ActivityTimeline>
       </div>
     </div>
   );

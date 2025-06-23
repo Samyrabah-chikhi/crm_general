@@ -1,2 +1,52 @@
 @import "tailwindcss";
 
+.gradient-card {
+  position: relative;
+}
+
+.gradient-card::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 8px;
+  background: linear-gradient(to right, var(--from-color), var(--to-color));
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}
+
+.gradient-card::before {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  top: -2;
+  left: 2;
+  border-radius: 8px;
+  filter: blur(20px);
+  background: linear-gradient(to right, var(--from-color), var(--to-color));
+  opacity: 0;
+  transition: opacity 1s ease-out;
+  z-index: 0;
+}
+
+.gradient-card:hover::after,
+.gradient-card:hover::before {
+  opacity: 0.15;
+}
+
+.pin {
+  position: relative;
+}
+
+.pin::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: brown;
+}
