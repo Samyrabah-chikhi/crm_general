@@ -23,7 +23,7 @@ export default function CustomerManagment() {
     <div
       className="flex flex-col bg-white border border-gray-300 
     w-[45vw] h-[70vh] p-6 rounded-lg gap-3
-    hover:-translate-y-3 hover:bg-gray-50 duration-500
+    hover:-translate-y-3 hover:bg-blue-50 duration-500
     group"
     >
       <span className="flex gap-3 items-center">
