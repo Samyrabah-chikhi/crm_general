@@ -1,5 +1,5 @@
 import React from "react";
-import RegisterButton from "./RegisterButton";
+import RegisterButton from "../buttons/RegisterButton";
 
 export default function InfoSection() {
   return (

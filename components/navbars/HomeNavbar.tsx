@@ -1,6 +1,6 @@
 import React from "react";
-import LoginButton from "./LoginButton";
-import RegisterButton from "./RegisterButton";
+import LoginButton from "../buttons/LoginButton";
+import RegisterButton from "../buttons/RegisterButton";
 import { Building2 } from "lucide-react";
 
 export default function HomeNavbar() {

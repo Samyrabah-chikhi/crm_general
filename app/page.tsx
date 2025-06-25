@@ -1,9 +1,9 @@
-import ActivityTimeline from "@/components/ActivityTimeline";
-import Advantages from "@/components/Advantages";
-import CustomerManagment from "@/components/CustomerManagment";
-import HomeNavbar from "@/components/HomeNavbar";
-import InfoSection from "@/components/InfoSection";
-import KeyMetrics from "@/components/KeyMetrics";
+import ActivityTimeline from "@/components/sections/ActivityTimeline";
+import Advantages from "@/components/sections/Advantages";
+import CustomerManagment from "@/components/sections/CustomerManagment";
+import HomeNavbar from "@/components/navbars/HomeNavbar";
+import InfoSection from "@/components/sections/InfoSection";
+import KeyMetrics from "@/components/cards/KeyMetrics";
 
 export default function Home() {
   return (

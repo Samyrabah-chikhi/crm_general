@@ -1,5 +1,5 @@
 import React from "react";
-import AdvantageCard from "./AdvantageCard";
+import AdvantageCard from "../cards/AdvantageCard";
 import { Shield, Zap, Star } from "lucide-react";
 
 export default function Advantages() {

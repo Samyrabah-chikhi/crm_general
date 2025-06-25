@@ -1,6 +1,6 @@
 import React from "react";
 import { Users } from "lucide-react";
-import ActiveCustomer from "./ActiveCustomer";
+import ActiveCustomer from "../cards/ActiveCustomer";
 
 export default function CustomerManagment() {
   const customers = [

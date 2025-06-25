@@ -14,7 +14,7 @@ export default function AdvantageCard({
 
   return (
     <div
-      className={`bg-white hover:-translate-y-3 hover:bg-pink-100 duration-500 group       
+      className={`bg-white hover:-translate-y-3 hover:bg-fuchsia-100 duration-500 group       
     flex flex-col items-center justify-center gap-1 border border-gray-300
     w-[30vw] h-[40vh] rounded-lg`}
     >

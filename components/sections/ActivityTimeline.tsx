@@ -1,6 +1,6 @@
 import React from "react";
 import { Calendar } from "lucide-react";
-import UserActivity from "./UserActivity";
+import UserActivity from "../cards/UserActivity";
 
 export default function ActivityTimeline() {
   const activities = [
