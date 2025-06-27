@@ -26,6 +26,7 @@ export default function Sidebar() {
         {sidebarItems.map((item, _) => {
           return (
             <SidebarButton
+              key={item.label}
               label={item.label}
               icon={item.icon}
               activeTab={activeTab}
