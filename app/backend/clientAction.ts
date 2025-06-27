@@ -51,6 +51,19 @@ export async function addClient(state: any, formData: any) {
   return { success: true, client };
 }
 
+export async function deleteClient(id: number) {
+  try {
+    const client = await prisma.client.delete({
+      where: { id },
+    });
+    console.log("Deleted successfully:", client);
+    return { success: true };
+  } catch (error) {
+    console.error("Error deleting client:", error);
+    return { success: false, error };
+  }
+}
+
 export async function getClients() {
   const user = await verifySession();
   if (!user) {

@@ -6,12 +6,16 @@ import {
   TrendingUp,
   Users,
 } from "lucide-react";
-import { useState } from "react";
 import SidebarButton from "../buttons/SidebarButton";
+import { Dispatch, SetStateAction } from "react";
 
-export default function Sidebar() {
-  const [activeTab, setActiveTab] = useState("Overview");
-
+export default function Sidebar({
+  activeTab,
+  setActiveTab,
+}: {
+  activeTab: string;
+  setActiveTab: Dispatch<SetStateAction<string>>;
+}) {
   const sidebarItems = [
     { label: "Overview", icon: BarChart3 },
     { label: "Clients", icon: Users },
