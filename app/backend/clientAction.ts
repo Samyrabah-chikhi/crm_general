@@ -21,7 +21,7 @@ const ClientCreationForm = z.object({
   status: z.nativeEnum(ClientStatus),
 });
 
-export async function addClient(state, formData) {
+export async function addClient(state: any, formData: any) {
   const validationResult = ClientCreationForm.safeParse({
     name: formData.get("name"),
     phone: formData.get("phone"),
@@ -49,4 +49,17 @@ export async function addClient(state, formData) {
   });
 
   return { success: true, client };
+}
+
+export async function getClients() {
+  const user = await verifySession();
+  if (!user) {
+    console.error("Unauthorized");
+    return null;
+  }
+  console.log(user);
+  const clients = await prisma.client.findMany({
+    where: { userId: Number(user.userId) },
+  });
+  return clients;
 }

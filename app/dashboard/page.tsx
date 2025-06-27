@@ -1,20 +1,21 @@
 "use client";
 
-import { signout } from "@/app/backend/loginAction";
+import Sidebar from "@/components/forms/Sidebar";
 import UserCreation from "@/components/forms/UserCreation";
+import DashboardNavbar from "@/components/navbars/DashboardNavbar";
+import ClientDisplay from "@/components/sections/ClientDisplay";
 
 export default function page() {
   return (
-    <div className="flex flex-col gap-4 justify-center items-center min-h-full min-w-full">
-      <button
-        onClick={() => signout()}
-        className={`font-semibold mt-4 w-28 h-12 rounded bg-red-700 cursor-pointer 
-          hover:scale-115 hover:text-white hover:bg-green-700 
-          hover:rounded-lg duration-500`}
-      >
-        Logout
-      </button>
-      <UserCreation></UserCreation>
+    <div>
+      <DashboardNavbar></DashboardNavbar>
+      <div className="flex">
+        <Sidebar></Sidebar>
+        <div className="w-full flex flex-col items-center gap-4 justify-center items-center min-h-full">    
+          <UserCreation></UserCreation>
+          <ClientDisplay></ClientDisplay>
+      </div>
+      </div>
     </div>
   );
 }

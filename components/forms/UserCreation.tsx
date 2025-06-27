@@ -1,3 +1,4 @@
+
 import { addClient } from "@/app/backend/clientAction";
 import { useActionState } from "react";
 
@@ -6,7 +7,7 @@ export default function UserCreation() {
   return (
     <form
       action={action}
-      className="flex flex-col gap-2 items-center justify-center
+      className="mt-2 flex flex-col gap-2 items-center justify-center
          bg-blue-300 rounded-md w-[30vw] h-[70vh] p-2"
     >
       <input
