@@ -2,45 +2,53 @@
 
 import { useEffect, useState } from "react";
 import DealsCard from "../../cards/DealsCard";
-import { deleteClient, getClients } from "@/app/backend/clientAction";
+import { getClients } from "@/app/backend/clientAction";
 import DealsHeader from "./DealsHeader";
 import { Search, Users } from "lucide-react";
 import DealsStats from "./DealsStats";
 import DealsFields from "./DealsFields";
 import DealCreation from "@/components/forms/DealCreation";
+import { deleteDeal, getDeals } from "@/app/backend/dealAction";
 
 export default function ClientDisplay() {
-  const [deals, setClients] = useState<any[]>([]);
+  const [deals, setDeals] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [data, setData] = useState<any[]>([]);
 
   const [total, setTotal] = useState(0);
-  const [active, setActive] = useState(0);
-  const [leads, setLeads] = useState(0);
+  const [open, setOpen] = useState(0);
+  const [won, setWon] = useState(0);
   const [closed, setClosed] = useState(0);
   const [showForm, setShowForm] = useState(false);
 
+  const [clients, setClients ] = useState<any[]>([])
+
   const handleDelete = async (id: number) => {
-    const res = await deleteClient(id);
+    const res = await deleteDeal(id);
     if (res.success) {
-      setClients((prev) => prev.filter((c) => c.id !== id));
+      setDeals((prev) => prev.filter((c) => c.id !== id));
     } else {
       alert("Failed to delete client.");
     }
   };
 
   useEffect(() => {
-    getClients().then((data) => {
+    getDeals().then((data) => {
       if (data) {
-        setClients(data);
+        setDeals(data);
         setTotal(data.length);
-        setActive(data.filter((c) => c.status == "ACTIVE").length);
-        setLeads(data.filter((c) => c.status == "LEAD").length);
-        setClosed(data.filter((c) => c.status == "CLOSED").length);
+        setOpen(data.filter((c) => c.status == "OPEN").length);
+        setWon(data.filter((c) => c.status == "WON").length);
+        setClosed(data.filter((c) => c.status == "LOST").length);
       }
       setLoading(false);
     });
+    getClients().then((data) => {
+      if(data){
+        setClients(data)
+      }
+    })
   }, []);
 
   if (loading) {
@@ -80,9 +88,10 @@ export default function ClientDisplay() {
   const filteredDeals = deals.filter((deals) => {
     const value = search.toLowerCase();
     return (
-      deals.name.toLowerCase().includes(value) ||
-      deals.company?.toLowerCase().includes(value) ||
-      deals.email.toLowerCase().includes(value)
+      deals.title.toLowerCase().includes(value) ||
+      deals.stage?.toLowerCase().includes(value) ||
+      deals.clientName.toLowerCase().includes(value) ||
+      deals.status.toLowerCase().includes(value)
     );
   });
 
@@ -106,7 +115,7 @@ export default function ClientDisplay() {
         </div>
       </div>
       {/** Stats  */}
-      <DealsStats statNumbers={[total, active, leads, closed]}></DealsStats>
+      <DealsStats statNumbers={[total, open, won, closed]}></DealsStats>
 
       {/** Display  */}
       <div className="p-6 flex flex-col gap-1.5 bg-white w-full text-gray-500">
@@ -122,11 +131,11 @@ export default function ClientDisplay() {
           return (
             <DealsCard
               key={deals.id}
-              name={deals.name}
-              company={deals.company}
-              email={deals.email}
-              phone={deals.phone}
+              title={deals.title}
+              value={deals.value}
               status={deals.status}
+              stage={deals.stage}
+              clientName={deals.clientName}
               created_At={deals.created_At}
               onDelete={() => handleDelete(deals.id)}
             ></DealsCard>
@@ -136,8 +145,8 @@ export default function ClientDisplay() {
       {showForm && (
         <DealCreation
           setShowForm={setShowForm}
-          setClients={setClients}
-          data={data}
+          setDeals={setDeals}
+          clients={clients}
         ></DealCreation>
       )}
     </div>

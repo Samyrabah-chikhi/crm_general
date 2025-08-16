@@ -51,6 +51,12 @@ export async function addClient(state: any, formData: any) {
 }
 
 export async function deleteClient(id: number) {
+  const user = await verifySession();
+  if (!user) {
+    console.error("Unauthorized");
+    return null;
+  }
+  console.log(user);
   try {
     const client = await prisma.client.delete({
       where: { id },
