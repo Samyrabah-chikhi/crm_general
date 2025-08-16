@@ -1,16 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ClientCard from "../../cards/ClientCard";
+import DealsCard from "../../cards/DealsCard";
 import { deleteClient, getClients } from "@/app/backend/clientAction";
-import ClientHeader from "./ClientHeader";
+import DealsHeader from "./DealsHeader";
 import { Search, Users } from "lucide-react";
-import ClientStats from "./ClientStats";
-import ClientFields from "./ClientFields";
-import UserCreation from "@/components/forms/UserCreation";
+import DealsStats from "./DealsStats";
+import DealsFields from "./DealsFields";
+import DealCreation from "@/components/forms/DealCreation";
 
 export default function ClientDisplay() {
-  const [clients, setClients] = useState<any[]>([]);
+  const [deals, setClients] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [data, setData] = useState<any[]>([]);
@@ -77,19 +77,19 @@ export default function ClientDisplay() {
     );
   }
 
-  const filteredClients = clients.filter((client) => {
+  const filteredDeals = deals.filter((deals) => {
     const value = search.toLowerCase();
     return (
-      client.name.toLowerCase().includes(value) ||
-      client.company?.toLowerCase().includes(value) ||
-      client.email.toLowerCase().includes(value)
+      deals.name.toLowerCase().includes(value) ||
+      deals.company?.toLowerCase().includes(value) ||
+      deals.email.toLowerCase().includes(value)
     );
   });
 
   return (
     <div className="flex flex-col gap-5 text-gray-800 bg-gray-50 w-full p-6">
       {/** Header  */}
-      <ClientHeader setShowForm={setShowForm}></ClientHeader>
+      <DealsHeader setShowForm={setShowForm}></DealsHeader>
       {/** Search  */}
       <div className="bg-white p-6">
         <div
@@ -98,7 +98,7 @@ export default function ClientDisplay() {
         >
           <Search className="mx-4"></Search>
           <input
-            placeholder="Search clients by name, company, or email..."
+            placeholder="Search deals by title, client, or status..."
             className="w-full h-full outline-none text-lg font-medium"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -106,39 +106,39 @@ export default function ClientDisplay() {
         </div>
       </div>
       {/** Stats  */}
-      <ClientStats statNumbers={[total, active, leads, closed]}></ClientStats>
+      <DealsStats statNumbers={[total, active, leads, closed]}></DealsStats>
 
       {/** Display  */}
       <div className="p-6 flex flex-col gap-1.5 bg-white w-full text-gray-500">
         <div className="flex items-center gap-4">
           <Users className="text-blue-600"></Users>
           <h2 className="text-black text-2xl font-semibold">
-            Clients ({clients?.length})
+            Deals ({deals?.length})
           </h2>
         </div>
-        <p className="text-sm">All your clients</p>
-        <ClientFields></ClientFields>
-        {filteredClients?.map((client, _) => {
+        <p className="text-sm">All your deals</p>
+        <DealsFields></DealsFields>
+        {filteredDeals?.map((deals, _) => {
           return (
-            <ClientCard
-              key={client.id}
-              name={client.name}
-              company={client.company}
-              email={client.email}
-              phone={client.phone}
-              status={client.status}
-              created_At={client.created_At}
-              onDelete={() => handleDelete(client.id)}
-            ></ClientCard>
+            <DealsCard
+              key={deals.id}
+              name={deals.name}
+              company={deals.company}
+              email={deals.email}
+              phone={deals.phone}
+              status={deals.status}
+              created_At={deals.created_At}
+              onDelete={() => handleDelete(deals.id)}
+            ></DealsCard>
           );
         })}
       </div>
       {showForm && (
-        <UserCreation
+        <DealCreation
           setShowForm={setShowForm}
           setClients={setClients}
           data={data}
-        ></UserCreation>
+        ></DealCreation>
       )}
     </div>
   );

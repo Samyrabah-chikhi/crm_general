@@ -17,12 +17,12 @@ export default function Sidebar({
   setActiveTab: Dispatch<SetStateAction<string>>;
 }) {
   const sidebarItems = [
-    { label: "Overview", icon: BarChart3 },
+    /*{ label: "Overview", icon: BarChart3 }, */
     { label: "Clients", icon: Users },
     { label: "Deals", icon: Handshake },
-    { label: "Logs", icon: FileText },
+    /*{ label: "Logs", icon: FileText },*/
     { label: "Tasks", icon: CheckSquare },
-    { label: "Stats", icon: TrendingUp },
+    /*{ label: "Stats", icon: TrendingUp },*/
   ];
   return (
     <aside className="w-80 min-h-screen border-r border-gray-300 sticky top-16">

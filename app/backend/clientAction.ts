@@ -1,7 +1,6 @@
 "use server";
 
 import { z } from "zod";
-import { cookies } from "next/headers";
 import { verifySession } from "./session";
 import prisma from "@/lib/prisma";
 

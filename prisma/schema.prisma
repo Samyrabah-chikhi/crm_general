@@ -36,7 +36,7 @@ model Client {
   name       String
   phone      String
   email      String
-  company    String?
+  company    String? 
   status     ClientStatus
   created_At DateTime     @default(now())
 
