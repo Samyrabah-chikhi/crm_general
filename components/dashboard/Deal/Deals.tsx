@@ -19,10 +19,10 @@ export default function ClientDisplay() {
   const [total, setTotal] = useState(0);
   const [open, setOpen] = useState(0);
   const [won, setWon] = useState(0);
-  const [closed, setClosed] = useState(0);
+  const [value, setValue] = useState(0);
   const [showForm, setShowForm] = useState(false);
 
-  const [clients, setClients ] = useState<any[]>([])
+  const [clients, setClients] = useState<any[]>([]);
 
   const handleDelete = async (id: number) => {
     const res = await deleteDeal(id);
@@ -36,19 +36,24 @@ export default function ClientDisplay() {
   useEffect(() => {
     getDeals().then((data) => {
       if (data) {
+        console.log(data);
         setDeals(data);
         setTotal(data.length);
         setOpen(data.filter((c) => c.status == "OPEN").length);
         setWon(data.filter((c) => c.status == "WON").length);
-        setClosed(data.filter((c) => c.status == "LOST").length);
+        let value = 0;
+        data.forEach((element) => {
+          value += element.value;
+        });
+        setValue(value);
       }
       setLoading(false);
     });
     getClients().then((data) => {
-      if(data){
-        setClients(data)
+      if (data) {
+        setClients(data);
       }
-    })
+    });
   }, []);
 
   if (loading) {
@@ -115,7 +120,7 @@ export default function ClientDisplay() {
         </div>
       </div>
       {/** Stats  */}
-      <DealsStats statNumbers={[total, open, won, closed]}></DealsStats>
+      <DealsStats statNumbers={[total, open, won, value]}></DealsStats>
 
       {/** Display  */}
       <div className="p-6 flex flex-col gap-1.5 bg-white w-full text-gray-500">
