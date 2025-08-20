@@ -15,12 +15,12 @@ export default function TasksDisplay({
   handleDelete: (id: number) => Promise<void>;
 }) {
   return (
-    <section className="grid grid-cols-3 gap-3 h-screen p-4">
+    <section className="grid grid-cols-3 gap-3 h-screen py-2">
       {tasks.map((task) => (
         <main
           key={task.id}
           className={`group flex flex-col gap-2 p-6
-    border border-gray-200 bg-white shadow rounded-lg h-[40vh] border-l-6
+    border border-gray-200 bg-white shadow rounded-lg h-[25vh] border-l-6
     hover:-translate-y-1.5 hover:shadow-2xl duration-300
     ${statusColors[task.status]}`}
         >

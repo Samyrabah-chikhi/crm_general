@@ -31,7 +31,7 @@ export default function ClientStats({
                   stat.title == "Leads" ? "text-blue-700" : ""
                 }`}
               >
-                {statNumbers[index]}
+                {statNumbers[index].toLocaleString("en-GB")}
               </p>
             </div>
             {React.createElement(stat.icon, {

@@ -12,24 +12,25 @@ export default function Tasks() {
   const [todo, setTodo] = useState(0);
   const [completed, setCompleted] = useState(0);
   const [overdue, setOverdue] = useState(0);
+  const [selected, setSelected] = useState("All Tasks");
 
   const [tasks, setTasks] = useState<any[]>([]);
 
   const handleDelete = async (id: number) => {
-      const res = await deleteTask(id);
-      if (res.success) {
-        setTasks((prev) => prev.filter((c) => c.id !== id));
-      } else {
-        alert("Failed to delete client.");
-      }
-    };
+    const res = await deleteTask(id);
+    if (res.success) {
+      setTasks((prev) => prev.filter((c) => c.id !== id));
+    } else {
+      alert("Failed to delete client.");
+    }
+  };
 
   useEffect(() => {
     getTasks().then((data) => {
       if (data) {
         console.log(data);
         setTasks(data);
-        setTotal(data.length)
+        setTotal(data.length);
         setTodo(data.filter((c) => c.status == "TODO").length);
         setCompleted(data.filter((c) => c.status == "DONE").length);
         setOverdue(data.filter((c) => c.status == "OVERDUE").length);
@@ -37,12 +38,25 @@ export default function Tasks() {
     });
   }, []);
 
+  const filteredTasks = tasks.filter((task) => {
+    if (selected === "All Tasks") return true;
+    return (
+      task.status.toUpperCase() === selected.replace(" ", "").toUpperCase()
+    );
+  });
+
   return (
     <div className="flex flex-col gap-5 text-gray-800 bg-gray-50 w-full p-6">
       <TasksHeader setShowForm={setShowForm}></TasksHeader>
       <TasksStats statNumbers={[total, todo, completed, overdue]}></TasksStats>
-      <TaskSelection></TaskSelection>
-      <TasksDisplay tasks={tasks} handleDelete={handleDelete}></TasksDisplay>
+      <TaskSelection
+        selected={selected}
+        setSelected={setSelected}
+      ></TaskSelection>
+      <TasksDisplay
+        tasks={filteredTasks}
+        handleDelete={handleDelete}
+      ></TasksDisplay>
       {showForm && (
         <TaskCreation
           setShowForm={setShowForm}
