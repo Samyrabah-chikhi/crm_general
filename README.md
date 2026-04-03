@@ -10,6 +10,7 @@
 
 **CRM General** is a modern full-stack Customer Relationship Management solution designed to streamline business-client interactions.  
 It features a high-performance web interface with a robust API backend, allowing businesses to efficiently manage customer data, track engagements, and optimize workflows. Built with **Next.js**, **React**, and **TypeScript**, it ensures a type-safe, scalable, and responsive experience.
+
 ![CRM GENERAL](assets/CRM.png)
 ---
 
