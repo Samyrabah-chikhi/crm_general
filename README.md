@@ -1,154 +1,91 @@
 # crm_general
 
-![Next.js](https://img.shields.io/badge/-Next.js-blue?logo=nextjs&logoColor=white) ![React](https://img.shields.io/badge/-React-blue?logo=react&logoColor=white) ![TypeScript](https://img.shields.io/badge/-TypeScript-blue?logo=typescript&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=white) 
+![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB) 
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+
+---
 
 ## 📝 Description
 
-CRM general is a modern, full-stack Customer Relationship Management solution designed to streamline business-client interactions through a high-performance web interface. Built using the powerful combination of Next.js, React, and TypeScript, the platform ensures a type-safe, scalable, and responsive user experience. It features a robust API architecture for seamless data integration and a comprehensive web portal, providing businesses with a centralized tool to effectively manage customer data, track engagements, and optimize operational workflows.
+**CRM General** is a modern full-stack Customer Relationship Management solution designed to streamline business-client interactions.  
+It features a high-performance web interface with a robust API backend, allowing businesses to efficiently manage customer data, track engagements, and optimize workflows. Built with **Next.js**, **React**, and **TypeScript**, it ensures a type-safe, scalable, and responsive experience.
+!(assets/CRM.png)
+---
 
 ## ✨ Features
 
-- 🌐 Api
-- 🕸️ Web
+- 🌐 RESTful API endpoints for clients and users  
+- 🕸️ Web portal with dashboards, forms, and real-time updates  
+- 🔒 Secure authentication and session management  
+- 📊 Customer, deals, and task management  
+- ⚡ Responsive, fast, and intuitive UI
 
+---
 
 ## 🛠️ Tech Stack
 
-- next.js Next.js
-- ⚛️ React
-- 📜 TypeScript
+- **Frontend:** Next.js, React, TypeScript  
+- **Styling:** Tailwind CSS  
+- **Backend:** Next.js API Routes + Prisma ORM  
+- **Database:** PostgreSQL / SQLite (via Prisma)  
 
+---
 
-## 📦 Key Dependencies
+## 🚀 Getting Started
 
+### 1. Clone the repository
+```bash
+git clone <repo-url>
+cd crm_general
 ```
-@prisma/client: ^6.10.1
-@prisma/extension-accelerate: ^2.0.1
-bcryptjs: ^3.0.2
-jose: ^6.0.11
-lucide-react: ^0.522.0
-next: 15.3.4
-react: ^19.0.0
-react-dom: ^19.0.0
-zod: ^3.25.67
+### 2. Install dependencies
+```bash
+npm install
+# or
+yarn install
+```
+### 3. Configure environment variables
+
+Create a .env file based on .env.example and configure your database URL and JWT secrets.
+
+### 4. Run the development server
+```bash
+npm run dev
+# or
+yarn dev
+```
+Open http://localhost:3000 to view the app.
+
+### 5. Build and start (production)
+```bash
+npm run build
+npm run start
 ```
 
-## 🚀 Run Commands
-
-- **dev**: `npm run dev`
-- **build**: `npm run build`
-- **start**: `npm run start`
-- **lint**: `npm run lint`
-
+---
 
 ## 📁 Project Structure
-
 ```
 .
-├── app
-│   ├── api
-│   │   ├── clients
-│   │   │   ├── [id]
-│   │   │   │   └── route.ts
-│   │   │   └── route.ts
-│   │   └── users
-│   │       ├── [id]
-│   │       │   └── route.ts
-│   │       └── route.ts
-│   ├── backend
-│   │   ├── clientAction.ts
-│   │   ├── dealAction.ts
-│   │   ├── loginAction.ts
-│   │   ├── session.ts
-│   │   └── taskAction.ts
-│   ├── dashboard
-│   │   └── page.tsx
-│   ├── globals.css
-│   ├── layout.tsx
-│   ├── login
-│   │   └── page.tsx
-│   ├── page.tsx
-│   └── register
-│       └── page.tsx
-├── components
-│   ├── buttons
-│   │   ├── LoginButton.tsx
-│   │   ├── LogoutButton.tsx
-│   │   ├── RegisterButton.tsx
-│   │   ├── SidebarButton.tsx
-│   │   └── TaskFilterButton.tsx
-│   ├── cards
-│   │   ├── ActiveCustomer.tsx
-│   │   ├── AdvantageCard.tsx
-│   │   ├── ClientCard.tsx
-│   │   ├── DealsCard.tsx
-│   │   ├── KeyMetrics.tsx
-│   │   ├── MetricsCards.tsx
-│   │   └── UserActivity.tsx
-│   ├── dashboard
-│   │   ├── Client
-│   │   │   ├── ClientFields.tsx
-│   │   │   ├── ClientHeader.tsx
-│   │   │   ├── ClientStats.tsx
-│   │   │   ├── Clients.tsx
-│   │   │   └── ClientsDisplay.tsx
-│   │   ├── Deal
-│   │   │   ├── Deals.tsx
-│   │   │   ├── DealsDisplay.tsx
-│   │   │   ├── DealsFields.tsx
-│   │   │   ├── DealsHeader.tsx
-│   │   │   └── DealsStats.tsx
-│   │   ├── Overview
-│   │   │   └── Overview.tsx
-│   │   └── Task
-│   │       ├── TaskSelection.tsx
-│   │       ├── Tasks.tsx
-│   │       ├── TasksDisplay.tsx
-│   │       ├── TasksHeader.tsx
-│   │       └── TasksStats.tsx
-│   ├── forms
-│   │   ├── DealCreation.tsx
-│   │   ├── Sidebar.tsx
-│   │   ├── TaskCreation.tsx
-│   │   └── UserCreation.tsx
-│   ├── navbars
-│   │   ├── DashboardNavbar.tsx
-│   │   └── HomeNavbar.tsx
-│   └── sections
-│       ├── ActivityTimeline.tsx
-│       ├── Advantages.tsx
-│       ├── CustomerManagment.tsx
-│       └── InfoSection.tsx
-├── eslint.config.mjs
-├── lib
-│   └── prisma.ts
-├── middleware.ts
+├── app/                 # Pages and API routes
+├── components/          # UI components (buttons, cards, forms, navbars)
+├── lib/                 # Utility libraries (Prisma client)
+├── prisma/              # Database schema & migrations
+├── public/              # Static assets (images, SVGs)
+├── tsconfig.json
 ├── next.config.ts
 ├── package.json
 ├── postcss.config.mjs
-├── prisma
-│   ├── migrations
-│   │   ├── 20250620175348_init
-│   │   │   └── migration.sql
-│   │   ├── 20250620180922_init
-│   │   │   └── migration.sql
-│   │   ├── 20250625001811_init
-│   │   │   └── migration.sql
-│   │   └── migration_lock.toml
-│   └── schema.prisma
-├── public
-│   ├── file.svg
-│   ├── globe.svg
-│   ├── next.svg
-│   ├── vercel.svg
-│   └── window.svg
-└── tsconfig.json
+└── middleware.ts
 ```
 
-## 🛠️ Development Setup
+## 🧪 Usage
+- Access dashboards for clients, deals, and tasks
+- Use forms to create or manage users, deals, and tasks
+- API routes support integration with external tools or scripts
 
-### Node.js/JavaScript Setup
-1. Install Node.js (v18+ recommended)
-2. Install dependencies: `npm install` or `yarn install`
-3. Start development server: (Check scripts in `package.json`, e.g., `npm run dev`)
-
+## 📌 Notes
+- Full-stack TypeScript for type safety
+- Prisma ORM ensures easy database migrations and queries
+- Tailwind CSS enables rapid, responsive UI development
