@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# crm_general
 
-## Getting Started
+![Next.js](https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=white) 
+![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB) 
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
 
-First, run the development server:
+---
 
+## 📝 Description
+
+**CRM General** is a modern full-stack Customer Relationship Management solution designed to streamline business-client interactions.  
+It features a high-performance web interface with a robust API backend, allowing businesses to efficiently manage customer data, track engagements, and optimize workflows. Built with **Next.js**, **React**, and **TypeScript**, it ensures a type-safe, scalable, and responsive experience.
+
+![CRM GENERAL](assets/CRM.png)
+---
+
+## ✨ Features
+
+- 🌐 RESTful API endpoints for clients and users  
+- 🕸️ Web portal with dashboards, forms, and real-time updates  
+- 🔒 Secure authentication and session management  
+- 📊 Customer, deals, and task management  
+- ⚡ Responsive, fast, and intuitive UI
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Next.js, React, TypeScript  
+- **Styling:** Tailwind CSS  
+- **Backend:** Next.js API Routes + Prisma ORM  
+- **Database:** PostgreSQL / SQLite (via Prisma)  
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+```bash
+git clone <repo-url>
+cd crm_general
+```
+### 2. Install dependencies
+```bash
+npm install
+# or
+yarn install
+```
+### 3. Configure environment variables
+
+Create a .env file based on .env.example and configure your database URL and JWT secrets.
+
+### 4. Run the development server
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+Open http://localhost:3000 to view the app.
+
+### 5. Build and start (production)
+```bash
+npm run build
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
+```
+.
+├── app/                 # Pages and API routes
+├── components/          # UI components (buttons, cards, forms, navbars)
+├── lib/                 # Utility libraries (Prisma client)
+├── prisma/              # Database schema & migrations
+├── public/              # Static assets (images, SVGs)
+├── tsconfig.json
+├── next.config.ts
+├── package.json
+├── postcss.config.mjs
+└── middleware.ts
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧪 Usage
+- Access dashboards for clients, deals, and tasks
+- Use forms to create or manage users, deals, and tasks
+- API routes support integration with external tools or scripts
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📌 Notes
+- Full-stack TypeScript for type safety
+- Prisma ORM ensures easy database migrations and queries
+- Tailwind CSS enables rapid, responsive UI development
