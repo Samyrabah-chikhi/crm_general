@@ -21,75 +21,91 @@ export default function DealCreation({
   }, [state, setDeals, setShowForm]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center 
-    backdrop-blur-[2px] backdrop-brightness-10">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm px-4">
       <form
         action={action}
-        className="bg-green-300 rounded-md w-[40vw] h-[95vh] p-6 flex flex-col gap-3 items-center justify-center"
+        className="relative w-full max-w-2xl rounded-[2rem] bg-white p-8 shadow-2xl ring-1 ring-slate-200"
       >
-        <X
-          className="text-white ml-auto mb-auto rounded-lg
-          hover:scale-110 duration-300
-          w-10 h-10 bg-red-600 cursor-pointer"
-          onClick={() => setShowForm(false)}
-        />
-        <input
-          type="text"
-          name="title"
-          placeholder="Deal title"
-          className="bg-white rounded-lg w-5/6 p-3"
-          required
-        />
-        <input
-          type="number"
-          name="value"
-          placeholder="Deal value"
-          className="bg-white rounded-lg w-5/6 p-3"
-        />
-        <select
-          name="status"
-          defaultValue="OPEN"
-          required
-          className="bg-white rounded-lg p-3 w-5/6"
-        >
-          <option value="OPEN">OPEN</option>
-          <option value="WON">WON</option>
-          <option value="LOST">LOST</option>
-        </select>
-        <select
-          name="stage"
-          defaultValue="LEAD"
-          required
-          className="bg-white rounded-lg p-3 w-5/6"
-        >
-          <option value="LEAD">LEAD</option>
-          <option value="CONTACT">CONTACT</option>
-          <option value="NEGOTIATION">NEGOTIATION</option>
-          <option value="CLOSED">CLOSED</option>
-        </select>
-        <select
-          name="clientName"
-          required
-          className="bg-white rounded-lg p-3 w-5/6"
-        >
-          {clients?.map((client, id) => {
-            return (
-              <option key={client.id} value={client.name}>
-                {client.name}
-              </option>
-            );
-          })}
-        </select>
         <button
-          disabled={pending}
-          className="mt-3 text-white text-medium text-xl 
-          hover:scale-110 hover:translate-y-2 duration-300
-          p-2 w-42 h-10 rounded-xl bg-emerald-700 cursor-pointer mb-20 disabled:opacity-50"
+          type="button"
+          className="absolute right-6 top-6 inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-700 transition hover:bg-slate-200"
+          onClick={() => setShowForm(false)}
+          aria-label="Close"
         >
-          {pending ? "Adding..." : "Add"}
+          <X className="h-5 w-5" />
         </button>
+        <div className="mb-6 space-y-2">
+          <h2 className="text-2xl font-semibold text-slate-900">Add New Deal</h2>
+          <p className="text-sm text-slate-500">Create a new deal and track it through your sales pipeline.</p>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <input
+            type="text"
+            name="title"
+            placeholder="Deal title"
+            className="rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-blue-400"
+            required
+          />
+          <input
+            type="number"
+            name="value"
+            placeholder="Deal value"
+            className="rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-blue-400"
+          />
+          <select
+            name="status"
+            defaultValue="OPEN"
+            required
+            className="rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-blue-400"
+          >
+            <option value="OPEN">OPEN</option>
+            <option value="WON">WON</option>
+            <option value="LOST">LOST</option>
+          </select>
+          <select
+            name="stage"
+            defaultValue="LEAD"
+            required
+            className="rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-blue-400"
+          >
+            <option value="LEAD">LEAD</option>
+            <option value="CONTACT">CONTACT</option>
+            <option value="NEGOTIATION">NEGOTIATION</option>
+            <option value="CLOSED">CLOSED</option>
+          </select>
+          <select
+            name="clientName"
+            required
+            className="sm:col-span-2 rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-blue-400"
+          >
+            <option value="">Choose a client</option>
+            {clients?.map((client) => {
+              return (
+                <option key={client.id} value={client.name}>
+                  {client.name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <div className="mt-8 flex items-center justify-end gap-4">
+          <button
+            type="button"
+            className="rounded-3xl border border-slate-300 px-6 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+            onClick={() => setShowForm(false)}
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            disabled={pending}
+            className="rounded-3xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {pending ? "Adding..." : "Add deal"}
+          </button>
+        </div>
         {state?.success && (
-          <p className="text-green-600">✅ Deal created successfully!</p>
+          <p className="mt-4 text-sm text-emerald-700">✅ Deal created successfully!</p>
         )}
       </form>
     </div>

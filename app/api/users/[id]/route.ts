@@ -1,10 +1,7 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
-export async function PUT(
-  req: Request,
-  context: { params: { id: string } }
-) {
+export async function PUT(req: Request, context: any) {
   const userID = parseInt(context.params.id);
   const body = await req.json();
   const { name, email, hashedPassword, role } = body;
@@ -12,24 +9,16 @@ export async function PUT(
   try {
     const updatedUser = await prisma.user.update({
       where: { id: userID },
-      data: {
-        name,
-        email,
-        hashedPassword,
-        role,
-      },
+      data: { name, email, hashedPassword, role },
     });
 
     return NextResponse.json(updatedUser);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 }
 
-export async function DELETE(
-  _req: Request,
-  context: { params: { id: string } }
-) {
+export async function DELETE(req: Request, context: any) {
   const userID = parseInt(context.params.id);
 
   try {
@@ -38,10 +27,7 @@ export async function DELETE(
     });
 
     return NextResponse.json(deletedUser);
-  } catch (error) {
-    return NextResponse.json(
-      { error: "User not found" },
-      { status: 404 }
-    );
+  } catch {
+    return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 }

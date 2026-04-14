@@ -7,23 +7,24 @@ export default function TasksHeader({
   setShowForm: Dispatch<SetStateAction<boolean>>;
 }) {
   return (
-    <div className="flex justify-between items-center">
-      <div className="flex flex-col gap-2.5 ">
-        <h2 className="font-bold text-bold text-3xl text-cyan-900">
-          Task Management
-        </h2>
-        <p>Organize and track your tasks efficiently</p>
+    <div className="flex flex-col gap-6 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+      <div className="flex flex-col gap-2">
+        <h2 className="text-3xl font-bold text-slate-900">Task Management</h2>
+        <p className="max-w-2xl text-sm text-slate-500">
+          Organize your work, surface overdue items, and keep every task on schedule.
+        </p>
       </div>
-      <button
-        className="flex items-center justify-center text-white font-semibold
-        bg-gradient-to-l from-orange-600 to-amber-600 p-5 h-8 rounded-lg text-md
-        hover:scale-105 duration-300 cursor-pointer"
-        onClick={() => {
-          setShowForm(true);
-        }}
-      >
-        + Add Task
-      </button>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="rounded-3xl bg-slate-50 px-4 py-3 text-sm text-slate-600">
+          Prioritize your to-do list with a cleaner workflow.
+        </div>
+        <button
+          className="rounded-full bg-gradient-to-r from-orange-500 to-amber-500 px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:scale-105 hover:shadow-xl"
+          onClick={() => setShowForm(true)}
+        >
+          + Add Task
+        </button>
+      </div>
     </div>
   );
 }
